@@ -3,9 +3,12 @@
 Suno で作った曲をフォルダに放り込んで `npm run build` を叩くと、
 **クロスフェードで繋がった長尺BGM動画**と**概要欄に貼るタイムスタンプ**が出てきます。
 
+このパイプラインはリポジトリの `ai-company/` 配下にあります。
+
 ## 準備（最初の1回だけ）
 
 ```bash
+cd ai-company
 npm install
 ```
 
@@ -14,15 +17,21 @@ ffmpeg は npm パッケージに同梱されているので、**別途インス
 
 ## 使い方
 
-1. `assets/music/` に Suno の曲を置く（mp3 / wav / m4a / flac / ogg）
-2. `assets/background/` に Canva で作った背景画像を置く（png / jpg）
+1. `ai-company/assets/music/` に Suno の曲を置く（mp3 / wav / m4a / flac / ogg）
+2. `ai-company/assets/background/` に Canva で作った背景画像を置く（png / jpg）
 3. 実行する
 
 ```bash
 npm run build
 ```
 
-`out/20260824-1430/` のような日時フォルダに、こう出てきます。
+リポジトリのルートからでも実行できます（パスは自動で解決されます）。
+
+```bash
+node ai-company/build.js
+```
+
+`ai-company/out/20260824-1430/` のような日時フォルダに、こう出てきます。
 
 | ファイル | 中身 |
 |---|---|
@@ -33,7 +42,7 @@ npm run build
 
 ## 設定
 
-いじるのは `config.json` だけです。
+いじるのは `ai-company/config.json` だけです。
 
 | 項目 | 意味 |
 |---|---|
@@ -55,10 +64,14 @@ npm run build
 ## ファイル構成
 
 ```
-build.js          実行の入口。1〜4 の手順をこの順に呼ぶだけ
-config.json       設定
-src/ffmpeg.js     ffmpeg / ffprobe を動かすヘルパー
-src/playlist.js   曲を集める・長さを測る・タイムスタンプを計算する
-src/audio.js      曲をクロスフェードで繋ぐ
-src/video.js      ズームループを作る・音声と合成する
+ai-company/
+  build.js          実行の入口。1〜4 の手順をこの順に呼ぶだけ
+  config.json       設定
+  src/ffmpeg.js     ffmpeg / ffprobe を動かすヘルパー
+  src/playlist.js   曲を集める・長さを測る・タイムスタンプを計算する
+  src/audio.js      曲をクロスフェードで繋ぐ
+  src/video.js      ズームループを作る・音声と合成する
+  assets/music/     Suno の曲を置く場所
+  assets/background/ 背景画像を置く場所
+  out/              書き出し先
 ```

@@ -10,6 +10,10 @@ const { buildLoop, muxWithAudio } = require("./src/video");
 
 const IMAGE_EXT = new Set([".png", ".jpg", ".jpeg", ".webp"]);
 
+// config.json 内のフォルダ指定は、このファイルがある場所を基準に解決する。
+// こうしておくと、どのフォルダから実行しても同じように動く。
+const resolve = (relativePath) => path.resolve(__dirname, relativePath);
+
 function log(step, message) {
   console.log(`[${step}] ${message}`);
 }
@@ -35,11 +39,11 @@ function createOutputDir(baseDir) {
 }
 
 async function main() {
-  const config = JSON.parse(fs.readFileSync("config.json", "utf8"));
+  const config = JSON.parse(fs.readFileSync(resolve("config.json"), "utf8"));
   const started = Date.now();
 
   // --- 1. 曲を集めて並び順と長さを確定する ---
-  const files = collectTracks(config.musicDir, { shuffle: config.shuffle });
+  const files = collectTracks(resolve(config.musicDir), { shuffle: config.shuffle });
   log("1/4", `曲を ${files.length} 本みつけました`);
 
   // クロスフェードが一番短い曲より長いと破綻するので、安全な値に丸める
@@ -53,7 +57,7 @@ async function main() {
   const playlist = await buildPlaylist(files, crossfade);
   log("1/4", `合計 ${formatTimestamp(playlist.totalDuration)}`);
 
-  const outputDir = createOutputDir(config.outputDir);
+  const outputDir = createOutputDir(resolve(config.outputDir));
   const audioFile = path.join(outputDir, "audio.m4a");
   const loopFile = path.join(outputDir, "loop.mp4");
   const videoFile = path.join(outputDir, "video.mp4");
@@ -66,7 +70,7 @@ async function main() {
   });
 
   // --- 3. 背景のズームループを作る ---
-  const background = pickBackground(config.backgroundDir);
+  const background = pickBackground(resolve(config.backgroundDir));
   log("3/4", `背景に ${path.basename(background)} を使います`);
   await buildLoop(background, loopFile, config.video);
 
