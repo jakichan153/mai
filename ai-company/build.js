@@ -22,6 +22,8 @@ function log(step, message) {
 function pickBackground(dir) {
   if (!fs.existsSync(dir)) throw new Error(`背景フォルダがありません: ${dir}`);
   const images = fs.readdirSync(dir)
+    // 背景側も同様に、macOS の隠しファイルを除く
+    .filter((name) => !name.startsWith("."))
     .filter((name) => IMAGE_EXT.has(path.extname(name).toLowerCase()))
     .sort();
   if (images.length === 0) throw new Error(`背景画像が見つかりません: ${dir}（Canva で作った画像を置いてください）`);

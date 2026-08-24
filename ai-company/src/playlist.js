@@ -39,6 +39,9 @@ function collectTracks(dir, { shuffle = false } = {}) {
   if (!fs.existsSync(dir)) throw new Error(`フォルダがありません: ${dir}`);
 
   const files = fs.readdirSync(dir)
+    // macOS が作る隠しファイル（.DS_Store や ._曲名.mp3）を除く。
+    // ._ で始まるものは拡張子が .mp3 なので、弾かないと曲として拾ってしまう。
+    .filter((name) => !name.startsWith("."))
     .filter((name) => AUDIO_EXT.has(path.extname(name).toLowerCase()))
     .sort((a, b) => a.localeCompare(b, "ja"))
     .map((name) => path.join(dir, name));
