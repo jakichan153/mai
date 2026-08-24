@@ -1,0 +1,6 @@
+node_modules/
+out/
+# 素材そのものはGitに載せない（容量が大きいため）
+assets/music/*
+assets/background/*
+!assets/**/.gitkeep

@@ -1,0 +1,18 @@
+{
+  "title": "深夜の書庫",
+  "musicDir": "assets/music",
+  "backgroundDir": "assets/background",
+  "outputDir": "out",
+
+  "shuffle": false,
+  "crossfadeSeconds": 4,
+  "loudnessNormalize": true,
+
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "loopSeconds": 60,
+    "zoomAmount": 0.08
+  }
+}
