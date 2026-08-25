@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "作業用BGM動画の自動生成パイプライン",
   "scripts": {
+    "reorder": "node reorder.js",
     "check": "node check.js",
     "build": "node build.js"
   },

@@ -1,0 +1,37 @@
+# 深夜の書庫 vol.1 — 曲順
+#
+# 上から順に 01, 02, ... と番号が振り直されます。
+# 行頭に # を付けると、その曲は使いません（_unused/ に移動するだけで消えません）。
+# npm run reorder で適用します。
+
+# ---- 入り（静かに始める。目立つ曲は置かない）----
+03-rain falls
+04-whispers of an ancient
+10-rainy town
+01-whispers of hinomori
+09-Rainy theme
+07-falls
+
+# ---- 深まり（本体。強い曲はこの中に置く）----
+05-Whispers of the Hidden Shrine
+02-across the castle town
+11-japanese fantasy
+08-first met
+12-travelers
+23-Whispers of the Forgotten Gods
+14-The Tavern of the Whispering
+17-Celtic folk
+15-The Tavern of the Floating
+22-RPG
+
+# ---- ほどき（少しずつ落ち着かせる）----
+20-medieval tavern
+18-travel
+16-Floating
+19-The Warm Hearth of the Tavern
+21-till end
+24-last trip
+
+# ---- 今回は使わない ----
+# 06-Hidden Shrine
+# 13-The Tavern of the Whispering

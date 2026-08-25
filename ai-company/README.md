@@ -19,7 +19,19 @@ ffmpeg は npm パッケージに同梱されているので、**別途インス
 
 1. `ai-company/assets/music/` に Suno の曲を置く（mp3 / wav / m4a / flac / ogg）
 2. `ai-company/assets/background/` に Canva で作った背景画像を置く（png / jpg）
-3. **書き出す前に確認する**（数秒で終わります）
+3. **曲順を確定する**（任意）
+
+`order.txt` に並べたい順で曲名を書き、実行します。
+
+```bash
+npm run reorder
+```
+
+ファイル名が `01 - 曲名.mp3` の形に振り直されます。行頭に `#` を付けた曲は使われず、
+`assets/music/_unused/` に移動します（**消えません**）。
+名前の打ち間違いや重複があった場合は、**何も変更せずに**中断します。
+
+4. **書き出す前に確認する**（数秒で終わります）
 
 ```bash
 npm run check
@@ -28,7 +40,7 @@ npm run check
 曲数・各曲の長さ・合計時間・概要欄の位置が一覧で出ます。読めないファイルがあればここで分かります。
 狙いの尺（`config.json` の `targetMinutes`）とずれていたら、ちょうど良い曲数も教えてくれます。
 
-4. 書き出す
+5. 書き出す
 
 ```bash
 npm run build
@@ -75,6 +87,8 @@ node ai-company/build.js
 
 ```
 ai-company/
+  order.txt         曲順の指定
+  reorder.js        order.txt どおりにファイル名を振り直す
   check.js          書き出す前の確認（曲数・尺・読めないファイル）
   build.js          実行の入口。1〜4 の手順をこの順に呼ぶだけ
   config.json       設定
