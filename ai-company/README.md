@@ -19,7 +19,16 @@ ffmpeg は npm パッケージに同梱されているので、**別途インス
 
 1. `ai-company/assets/music/` に Suno の曲を置く（mp3 / wav / m4a / flac / ogg）
 2. `ai-company/assets/background/` に Canva で作った背景画像を置く（png / jpg）
-3. 実行する
+3. **書き出す前に確認する**（数秒で終わります）
+
+```bash
+npm run check
+```
+
+曲数・各曲の長さ・合計時間・概要欄の位置が一覧で出ます。読めないファイルがあればここで分かります。
+狙いの尺（`config.json` の `targetMinutes`）とずれていたら、ちょうど良い曲数も教えてくれます。
+
+4. 書き出す
 
 ```bash
 npm run build
@@ -46,6 +55,7 @@ node ai-company/build.js
 
 | 項目 | 意味 |
 |---|---|
+| `targetMinutes` | 狙う尺（分）。`npm run check` がこれと比べて過不足を教えてくれる |
 | `shuffle` | `true` にすると曲順をランダムにする。ファイル名順でよければ `false` |
 | `crossfadeSeconds` | 曲の重なり秒数。長いほど繋ぎ目が滑らかになる |
 | `loudnessNormalize` | 曲ごとの音量差をならす。基本は `true` のまま |
@@ -65,6 +75,7 @@ node ai-company/build.js
 
 ```
 ai-company/
+  check.js          書き出す前の確認（曲数・尺・読めないファイル）
   build.js          実行の入口。1〜4 の手順をこの順に呼ぶだけ
   config.json       設定
   src/ffmpeg.js     ffmpeg / ffprobe を動かすヘルパー

@@ -3,11 +3,10 @@
   "musicDir": "assets/music",
   "backgroundDir": "assets/background",
   "outputDir": "out",
-
+  "targetMinutes": 60,
   "shuffle": false,
   "crossfadeSeconds": 4,
   "loudnessNormalize": true,
-
   "video": {
     "width": 1920,
     "height": 1080,

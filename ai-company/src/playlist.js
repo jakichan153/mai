@@ -90,4 +90,4 @@ function renderTracklist({ tracks, totalDuration }) {
   ].join("\n");
 }
 
-module.exports = { collectTracks, buildPlaylist, renderTracklist, formatTimestamp };
+module.exports = { collectTracks, buildPlaylist, renderTracklist, formatTimestamp, getDuration };
