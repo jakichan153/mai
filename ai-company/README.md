@@ -70,7 +70,7 @@ node ai-company/build.js
 | `targetMinutes` | 狙う尺（分）。`npm run check` がこれと比べて過不足を教えてくれる |
 | `shuffle` | `true` にすると曲順をランダムにする。ファイル名順でよければ `false` |
 | `crossfadeSeconds` | 曲の重なり秒数。長いほど繋ぎ目が滑らかになる |
-| `loudnessNormalize` | 曲ごとの音量差をならす。基本は `true` のまま |
+| `loudnessNormalize` | **曲ごとに音量を測って -14 LUFS に揃える。** 基本は `true` のまま |
 | `video.loopSeconds` | 背景ループの長さ。長いほど繰り返し感が減るが、書き出しも遅くなる |
 | `video.zoomAmount` | ズームの強さ。`0.08` = 8%。作業用BGMなので控えめが良い |
 
@@ -94,7 +94,8 @@ ai-company/
   config.json       設定
   src/ffmpeg.js     ffmpeg / ffprobe を動かすヘルパー
   src/playlist.js   曲を集める・長さを測る・タイムスタンプを計算する
-  src/audio.js      曲をクロスフェードで繋ぐ
+  src/loudness.js   曲ごとの音量を測る
+  src/audio.js      音量を揃えてからクロスフェードで繋ぐ
   src/video.js      ズームループを作る・音声と合成する
   assets/music/     Suno の曲を置く場所
   assets/background/ 背景画像を置く場所

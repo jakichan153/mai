@@ -6,6 +6,7 @@ const path = require("node:path");
 
 const { collectTracks, buildPlaylist, renderTracklist, formatTimestamp } = require("./src/playlist");
 const { buildAudio } = require("./src/audio");
+const { measureLoudness, gainToTarget, TARGET_LUFS } = require("./src/loudness");
 const { buildLoop, muxWithAudio } = require("./src/video");
 
 const IMAGE_EXT = new Set([".png", ".jpg", ".jpeg", ".webp"]);
@@ -64,7 +65,17 @@ async function main() {
   const loopFile = path.join(outputDir, "loop.mp4");
   const videoFile = path.join(outputDir, "video.mp4");
 
-  // --- 2. 曲を繋いで1本の音声にする ---
+  // --- 2. 曲ごとの音量を揃えてから繋ぐ ---
+  if (config.loudnessNormalize) {
+    log("2/4", "曲ごとの音量を測っています…");
+    for (const track of playlist.tracks) {
+      track.gainDb = gainToTarget(await measureLoudness(track.file));
+    }
+    const gains = playlist.tracks.map((t) => t.gainDb);
+    const spread = Math.max(...gains) - Math.min(...gains);
+    log("2/4", `音量差は ${spread.toFixed(1)} dB でした。${TARGET_LUFS} LUFS に揃えます`);
+  }
+
   log("2/4", "曲をクロスフェードで繋いでいます…");
   await buildAudio(playlist.tracks, audioFile, {
     crossfadeSeconds: crossfade,

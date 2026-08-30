@@ -7,7 +7,7 @@ const ffprobePath = require("ffprobe-static").path;
 
 // コマンドを実行し、終了を待つ。失敗したらエラーにする。
 // showProgress を true にすると ffmpeg の進捗表示をそのまま画面に流す。
-function run(binary, args, { showProgress = false } = {}) {
+function run(binary, args, { showProgress = false, captureStderr = false } = {}) {
   return new Promise((resolve, reject) => {
     const child = spawn(binary, args, {
       stdio: showProgress ? ["ignore", "ignore", "inherit"] : ["ignore", "pipe", "pipe"],
@@ -20,7 +20,8 @@ function run(binary, args, { showProgress = false } = {}) {
 
     child.on("error", reject);
     child.on("close", (code) => {
-      if (code === 0) return resolve(stdout);
+      // ffmpeg の測定系フィルタは結果を stderr に出すため、必要なときはそちらを返す
+      if (code === 0) return resolve(captureStderr ? stderr : stdout);
       // ffmpeg のエラーは stderr の末尾に出るので、そこだけ見せる
       reject(new Error(`${binary} が失敗しました (exit ${code})\n${stderr.slice(-2000)}`));
     });
