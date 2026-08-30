@@ -6,6 +6,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const { collectTracks, getDuration, formatTimestamp } = require("./src/playlist");
+const { ffprobe } = require("./src/ffmpeg");
+
+const IMAGE_EXT = new Set([".png", ".jpg", ".jpeg", ".webp"]);
 
 const resolve = (relativePath) => path.resolve(__dirname, relativePath);
 
@@ -13,6 +16,50 @@ const resolve = (relativePath) => path.resolve(__dirname, relativePath);
 function formatLength(seconds) {
   const s = Math.round(seconds);
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+}
+
+// 背景画像の寸法を調べる。ファイルサイズでは判断できないため。
+async function checkBackground(dir, video) {
+  if (!fs.existsSync(dir)) return console.log("\n背景フォルダがありません。");
+
+  const images = fs.readdirSync(dir)
+    .filter((name) => !name.startsWith("."))
+    .filter((name) => IMAGE_EXT.has(path.extname(name).toLowerCase()));
+
+  if (images.length === 0) return console.log("\n背景画像がまだありません。");
+  if (images.length > 1) {
+    console.log(`\n背景画像が ${images.length} 枚あります。使われるのは名前順で最初の 1 枚だけです:`);
+    for (const name of images) console.log(`  ${name}`);
+  }
+
+  const file = path.join(dir, images.sort()[0]);
+  const out = await ffprobe([
+    "-v", "error", "-select_streams", "v:0",
+    "-show_entries", "stream=width,height",
+    "-of", "csv=p=0", file,
+  ]);
+  const [width, height] = out.trim().split(",").map(Number);
+
+  console.log(`\n背景: ${path.basename(file)}  ${width} × ${height}`);
+
+  // ズームで拡大されるので、書き出しサイズより大きい元画像が要る
+  if (width >= video.width * 1.3) {
+    console.log("  解像度: 十分です");
+  } else if (width >= video.width) {
+    console.log("  解像度: 実用上問題ありません（拡大時にわずかに甘くなる程度）");
+  } else {
+    console.log(`  解像度: 足りません。ズームで拡大するとぼやけます`);
+    console.log(`         幅 ${video.width}px 以上が必要です（${video.width * 2}px あると理想的）`);
+  }
+
+  // 16:9 から外れると上下または左右が切れる
+  const ratio = width / height;
+  const target = video.width / video.height;
+  if (Math.abs(ratio - target) / target > 0.02) {
+    console.log(`  縦横比: 16:9 ではありません（いまは ${ratio.toFixed(2)} : 1）。端が切れます`);
+  } else {
+    console.log("  縦横比: 16:9 です");
+  }
 }
 
 async function main() {
@@ -60,6 +107,8 @@ async function main() {
 
   const total = sumOfDurations - (tracks.length - 1) * crossfade;
   console.log(`\n合計: ${formatTimestamp(total)}`);
+
+  await checkBackground(resolve(config.backgroundDir), config.video);
 
   // 狙いの尺と比べる
   const targetSeconds = (config.targetMinutes || 60) * 60;
