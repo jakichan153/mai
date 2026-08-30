@@ -5,6 +5,7 @@
   "scripts": {
     "reorder": "node reorder.js",
     "check": "node check.js",
+    "audio": "node audio.js",
     "build": "node build.js"
   },
   "repository": {

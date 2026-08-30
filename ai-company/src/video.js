@@ -8,20 +8,39 @@
 const { ffmpeg } = require("./ffmpeg");
 
 // 継ぎ目のないズームループを作る。
-// ズーム倍率を cos カーブで 1 → 1+amount → 1 と戻すので、先頭と末尾が一致して繋ぎ目が見えない。
+//
+// なぜ perspective を使うのか:
+//   よく使われる zoompan は、拡大位置を1ピクセル単位でしか動かせない。
+//   60秒で8%というごく遅い動きだと「何十フレームも止まって、突然1ピクセル飛ぶ」
+//   という動きになり、はっきりカクついて見える（実測で全フレームの53%が静止していた）。
+//   perspective は小数の座標を扱えて補間もするため、1ピクセル未満の移動ができる。
+//   同じ条件で静止フレームは1%まで下がる。
 async function buildLoop(imageFile, loopFile, { width, height, fps, loopSeconds, zoomAmount }) {
   const frames = loopSeconds * fps;
 
-  // 先に大きめに拡大しておくと、ズーム時のカクつき(ジッター)が目立ちにくい
-  const sourceWidth = width * 2;
-  const sourceHeight = height * 2;
+  // 拡大しても粗が出ないよう、書き出しサイズより少し大きい段階で動かして最後に縮める
+  const stageWidth = Math.round(width * 4 / 3 / 2) * 2;
+  const stageHeight = Math.round(height * 4 / 3 / 2) * 2;
 
-  const zoomExpr = `1+${zoomAmount}*(1-cos(2*PI*on/${frames}))/2`;
+  // 倍率を cos カーブで 1 → 1+amount → 1 と往復させる。
+  // 先頭と末尾が一致するので、繰り返しても継ぎ目が見えない。
+  const zoom = `1+${zoomAmount}*(1-cos(2*PI*on/${frames}))/2`;
+  // 元画像のどれだけ内側を切り出すか（左右・上下それぞれの割合）
+  const inset = `(1-1/(${zoom}))/2`;
+
+  // 切り出す四隅を指定する。中央を保ったまま内側に寄せると拡大になる。
+  const corners = [
+    `x0='W*${inset}'`, `y0='H*${inset}'`,
+    `x1='W-W*${inset}'`, `y1='H*${inset}'`,
+    `x2='W*${inset}'`, `y2='H-H*${inset}'`,
+    `x3='W-W*${inset}'`, `y3='H-H*${inset}'`,
+  ].join(":");
 
   const filter = [
-    `scale=${sourceWidth}:${sourceHeight}:force_original_aspect_ratio=increase`,
-    `crop=${sourceWidth}:${sourceHeight}`,
-    `zoompan=z='${zoomExpr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=${width}x${height}:fps=${fps}`,
+    `scale=${stageWidth}:${stageHeight}:force_original_aspect_ratio=increase`,
+    `crop=${stageWidth}:${stageHeight}`,
+    `perspective=${corners}:interpolation=cubic:eval=frame`,
+    `scale=${width}:${height}:flags=lanczos`,
   ].join(",");
 
   await ffmpeg([
