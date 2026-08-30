@@ -24,7 +24,7 @@
 8-Moonlit Koto
 11-Mist Pass
 15-Temple Rain
-18-雪夜の琴音
+18-Koto on Snowy night
 
 # ---- ほどき（帰路 → 別れ → 最後の光 → 夜明け → 霧が晴れる）----
 20-Fogged Return
