@@ -67,8 +67,9 @@ async function main() {
   const sign = diff >= 0 ? "+" : "-";
   console.log(`狙い: ${formatTimestamp(targetSeconds)}（差 ${sign}${formatLength(Math.abs(diff))}）`);
 
-  // 5分以上ずれていたら曲数を調整したほうがよい
-  if (Math.abs(diff) > 300) {
+  // 10分以上ずれていたら曲数を調整したほうがよい。
+  // これ未満のずれは実用上まったく問題にならないので警告しない。
+  if (Math.abs(diff) > 600) {
     const average = sumOfDurations / tracks.length;
     const ideal = Math.round((targetSeconds - crossfade) / (average - crossfade));
     console.log(`\nずれが大きいです。この平均の長さなら ${ideal} 曲がちょうど良い計算です。`);
