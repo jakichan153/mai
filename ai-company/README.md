@@ -82,7 +82,7 @@ node ai-company/build.js
 | `crossfadeSeconds` | 曲の重なり秒数。長いほど繋ぎ目が滑らかになる |
 | `loudnessNormalize` | **曲ごとに音量を測って -14 LUFS に揃える。** 基本は `true` のまま |
 | `video.loopSeconds` | 背景ループの長さ。長いほど繰り返し感が減るが、書き出しも遅くなる |
-| `video.zoomAmount` | ズームの強さ。`0.08` = 8%。作業用BGMなので控えめが良い |
+| `video.zoomAmount` | ズームの強さ。**`0` で完全な静止画**（既定値）。`0.08` にすると 8% ゆっくり拡大縮小する |
 
 ## 仕組み（なぜ速いのか）
 

@@ -18,6 +18,18 @@ const { ffmpeg } = require("./ffmpeg");
 async function buildLoop(imageFile, loopFile, { width, height, fps, loopSeconds, zoomAmount }) {
   const frames = loopSeconds * fps;
 
+  // zoomAmount が 0 なら動かさない。完全な静止画になるので、
+  // カクつきは原理的に起こらず、書き出しも一瞬で終わる。
+  if (!zoomAmount) {
+    await ffmpeg([
+      "-loop", "1", "-framerate", String(fps), "-i", imageFile, "-t", String(loopSeconds),
+      "-vf", `scale=${width}:${height}:force_original_aspect_ratio=increase:flags=lanczos,crop=${width}:${height}`,
+      "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-pix_fmt", "yuv420p",
+      "-g", String(fps), loopFile,
+    ], { showProgress: true });
+    return;
+  }
+
   // 拡大しても粗が出ないよう、書き出しサイズより少し大きい段階で動かして最後に縮める
   const stageWidth = Math.round(width * 4 / 3 / 2) * 2;
   const stageHeight = Math.round(height * 4 / 3 / 2) * 2;
