@@ -41,7 +41,8 @@ async function main() {
   }
 
   const outputDir = createOutputDir(resolve(config.outputDir));
-  const audioFile = path.join(outputDir, "audio.m4a");
+  // Canva など別のソフトに渡すため、どこでも読める MP3 で出す
+  const audioFile = path.join(outputDir, "audio.mp3");
 
   console.log("[2/2] 曲を繋いでいます…");
   await buildAudio(playlist.tracks, audioFile, {

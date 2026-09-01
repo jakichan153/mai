@@ -30,15 +30,24 @@ function buildFilter(tracks, crossfadeSeconds, matchLoudness) {
   return steps.join(";");
 }
 
+// 出力の形式は拡張子で決める。.mp3 なら MP3、それ以外は AAC。
+// MP3 はどのソフトでも読めるので、Canva など別のソフトに渡すときに使う。
+function encoderFor(outputFile) {
+  return outputFile.toLowerCase().endsWith(".mp3")
+    ? ["-c:a", "libmp3lame", "-b:a", "256k"]
+    : ["-c:a", "aac", "-b:a", "256k"];
+}
+
 async function buildAudio(tracks, outputFile, { crossfadeSeconds, loudnessNormalize }) {
   const inputs = tracks.flatMap((t) => ["-i", t.file]);
+  const encoder = encoderFor(outputFile);
 
   // 1曲だけならクロスフェードは不要
   if (tracks.length === 1) {
     const gain = loudnessNormalize && tracks[0].gainDb ? `,volume=${tracks[0].gainDb}dB` : "";
     await ffmpeg([
       ...inputs, "-af", `${NORMALIZE}${gain},${LIMITER}`,
-      "-c:a", "aac", "-b:a", "256k", outputFile,
+      ...encoder, outputFile,
     ], { showProgress: true });
     return;
   }
@@ -47,8 +56,7 @@ async function buildAudio(tracks, outputFile, { crossfadeSeconds, loudnessNormal
     ...inputs,
     "-filter_complex", buildFilter(tracks, crossfadeSeconds, loudnessNormalize),
     "-map", "[out]",
-    "-c:a", "aac",
-    "-b:a", "256k",
+    ...encoder,
     outputFile,
   ], { showProgress: true });
 }
