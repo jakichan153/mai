@@ -41,7 +41,16 @@ npm run check
 読めないファイルや、解像度の足りない背景があればここで分かります。
 狙いの尺（`config.json` の `targetMinutes`）とずれていたら、ちょうど良い曲数も教えてくれます。
 
-5. 書き出す
+5. サムネイルを作る
+
+```bash
+npm run thumbnail
+```
+
+背景画像から `thumbnail.jpg`（1280×720）を作ります。YouTube の上限である
+2MB に収まるよう、必要なら画質を自動で調整します。
+
+6. 書き出す
 
 ```bash
 npm run build
@@ -107,6 +116,7 @@ ai-company/
   order.txt         曲順の指定
   reorder.js        order.txt どおりにファイル名を振り直す
   audio.js          音声だけを書き出す（映像は作らない）
+  thumbnail.js      背景画像からサムネイルを作る
   check.js          書き出す前の確認（曲数・尺・読めないファイル）
   build.js          実行の入口。1〜4 の手順をこの順に呼ぶだけ
   config.json       設定

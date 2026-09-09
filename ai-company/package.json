@@ -6,6 +6,7 @@
     "reorder": "node reorder.js",
     "check": "node check.js",
     "audio": "node audio.js",
+    "thumbnail": "node thumbnail.js",
     "build": "node build.js"
   },
   "repository": {
