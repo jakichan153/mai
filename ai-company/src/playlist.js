@@ -18,11 +18,16 @@ async function getDuration(file) {
   return seconds;
 }
 
-// ファイル名から曲名を作る。先頭の連番（"01 - ", "03_" など）は落とす。
+// ファイル名の先頭に付けた通し番号を落とすための判定。
+// 落とすのは次の2つの形だけにして、曲名そのものを削らないようにする。
+//   「A01 曲名」… 英字1文字＋数字＋空白（区間を表す記号として使う形）
+//   「01 - 曲名」… 数字＋記号（-, _, .）
+// 「24 Hours of Rain」のように数字で始まる曲名は、記号が続かないので落とさない。
+const TRACK_NUMBER = /^(?:[A-Za-z]\d+\s+|\d+\s*[-_.]\s*)/;
+
+// ファイル名から曲名を作る
 function titleFromFilename(file) {
-  return path.basename(file, path.extname(file))
-    .replace(/^\d+\s*[-_.]\s*/, "")
-    .trim();
+  return path.basename(file, path.extname(file)).replace(TRACK_NUMBER, "").trim();
 }
 
 // 秒 -> "H:MM:SS"（YouTube の章立てが認識する形式）
@@ -90,4 +95,4 @@ function renderTracklist({ tracks, totalDuration }) {
   ].join("\n");
 }
 
-module.exports = { collectTracks, buildPlaylist, renderTracklist, formatTimestamp, getDuration };
+module.exports = { collectTracks, buildPlaylist, renderTracklist, formatTimestamp, getDuration, titleFromFilename };

@@ -1,35 +1,33 @@
-# 隠り世の音 Vol.1 — 曲順
+# 隠り世の音 Vol.2 紅葉 — 曲順
 #
 # 上から順に 01, 02, ... と番号が振り直されます。
 # 行頭に # を付けると使いません（_unused/ に移動するだけで消えません）。
 # npm run reorder で適用します。
 
-# ---- 入り（夜明けの霧から、社の石段へ）----
-3-First Mist at Dawn
-1-Mist Over the River
-2-Mist Between the Reeds
-4-Stone Steps to the Shrine
+# ---- 入り（1曲目は「静かだが世界が立ち上がる曲」。無音に近い曲は置かない）----
+A01 Golden Autumn Calm
+A03 Morning Light in the Garden
+A02 Golden Maple Wind
+A04 Red Leaf Path
 
-# ---- 深まり（ゆるやかに上げ、神楽で頂点、そこから静かに降りる）----
-5-Mist of the Dawn
-6-Sac Mist
-12-Bambreed Mist
-13-River Mist Drift
-9-Mystic Green Forest
-7-Mystic Path to the Capital
-17-Lantern Street Shinobue
-10-Misty Kagura
-14-Dusk in the Village
-16-Path of Torii
-8-Moonlit Koto
-11-Mist Pass
-15-Temple Rain
-18-Koto on Snowy night
+# ---- 深まり（昼から夜へ。祭りで一度だけ頂点をつくり、そこから暮れていく）----
+B03 Maple Forest at Midday
+B10 Autumn Bamboo Wind
+B08 Red Leaves on the River
+B05 Golden Autumn Road
+B01 Autumn Town Drift
+B02 Autumn at the Shrine
+B11 Autumn Torii Path
+B07 autumn festival theme
+B12 Autumn Lantern Street
+B09 Sunset on the Village Road
+B06 rain on fallen leaves
+B04 Autumn Evening
+B14 Autumn Dusk
+B13 First Night of Autumn
 
-# ---- ほどき（帰路 → 別れ → 最後の光 → 夜明け → 霧が晴れる）----
-20-Fogged Return
-21-Dusk Return
-22-Farewell in the Mist
-23-Last Light on the Water
-19-Dawn Mist
-24-Morning Mist Clears
+# ---- ほどき（帰り道 → 最後の暖かい夜 → 別れ → 最後の一葉）----
+C02 Red Maple Walk
+C03 Last Warm Evening
+C01 Autumn Farewell
+C04 Final Leaf

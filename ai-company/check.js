@@ -42,8 +42,16 @@ async function checkBackground(dir, video) {
 
   console.log(`\n背景: ${path.basename(file)}  ${width} × ${height}`);
 
-  // ズームで拡大されるので、書き出しサイズより大きい元画像が要る
-  if (width >= video.width * 1.3) {
+  // 必要な解像度はズームの有無で変わる。
+  // ズームしない場合、映像はパイプラインで作らないので、
+  // 判定はサムネイル（1280px）に足りるかどうかだけでよい。
+  if (!video.zoomAmount) {
+    if (width >= 1280) {
+      console.log("  解像度: 十分です（ズームなしの設定。サムネイルに必要な1280pxを満たしています）");
+    } else {
+      console.log(`  解像度: サムネイルには足りません。幅1280px以上が必要です`);
+    }
+  } else if (width >= video.width * 1.3) {
     console.log("  解像度: 十分です");
   } else if (width >= video.width) {
     console.log("  解像度: 実用上問題ありません（拡大時にわずかに甘くなる程度）");

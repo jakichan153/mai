@@ -4,11 +4,10 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
+const { titleFromFilename } = require("./src/playlist");
+
 const resolve = (relativePath) => path.resolve(__dirname, relativePath);
 const AUDIO_EXT = new Set([".mp3", ".wav", ".m4a", ".flac", ".ogg"]);
-
-// 行頭の連番（"03-" や "03 - "）を落として曲名だけにする
-const stripNumber = (name) => name.replace(/^\d+\s*[-_.]\s*/, "").trim();
 
 function readOrderFile(file) {
   if (!fs.existsSync(file)) throw new Error(`${path.basename(file)} がありません`);
@@ -62,7 +61,7 @@ function main() {
     return {
       current,
       temporary: `__tmp_${index}${path.extname(current)}`,
-      final: `${number} - ${stripNumber(name)}${path.extname(current)}`,
+      final: `${number} - ${titleFromFilename(name)}${path.extname(current)}`,
     };
   });
 
