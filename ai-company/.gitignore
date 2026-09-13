@@ -1,6 +1,9 @@
 node_modules/
 out/
-# 素材そのものはGitに載せない（容量が大きいため）
-assets/music/*
-assets/background/*
+
+# 素材そのものはGitに載せない（容量が大きいため）。
+# assets/ 以下は、フォルダの存在を示す .gitkeep 以外すべて対象。
+# 退避用の archive フォルダも自動的に含まれる。
+assets/**
+!assets/**/
 !assets/**/.gitkeep
