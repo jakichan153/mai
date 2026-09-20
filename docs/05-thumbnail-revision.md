@@ -1,12 +1,64 @@
 # 既存4本サムネイル改訂案
-作成: 皐月 澪（art-director） / 2026-09-20
-参照: `docs/00-strategy.md` §2.2・§4 / `docs/02-analytics-ledger.md` §2・4 / `docs/03-packaging-rules.md` §2・§4
 
-> 前提として不変: 「PLAYLIST」の白抜き大文字帯は4本すべてで維持する。変更するのは**構図・寄り・コントラスト・シリーズ名表示**の4点のみ。
+> ## ⚠ 重要な訂正（2026-09-20 / 音城 蓮）
+> 初版はサムネ実物を未確認のまま作成しており、前提が3点誤っていた。**初版の §2 の画像生成プロンプト・§5 の手順④・C2（コントラスト）は無効。**
+>
+> | 誤った前提 | 実際 |
+> |---|---|
+> | 「PLAYLIST」はテキストレイヤー | **水彩で窓に描き込まれた絵の一部**。テキストボックスは存在せず、複製・移動できない |
+> | ビジュアルは写真（cinematic photo） | **水彩イラスト**（繊細な線画＋淡い彩色、日本のアニメ美術寄り）。写真プロンプトは資産を破壊する |
+> | コントラストを上げれば改善 | 水彩はにじみと淡さが持ち味。**全体コントラストを上げると濁る**。上げるべきは「主役と背景の明度差」だけ |
+>
+> **確定したブランド資産（今後も維持する3点）**
+> 1. 水彩イラストのアートスタイル ← **最大の資産。競合の写真・汎用lofiアニメとの決定的な差別化点**
+> 2. 「PLAYLIST」が車窓越しの風景に溶けているコンセプト
+> 3. 電車という舞台
+>
+> 有効な改訂方針は §1.5 を参照。
 
 ---
 
-## 1. 各動画の診断
+## 1.5 実物確認後の再診断【こちらが最新】
+
+### 最大の問題: 視覚的な主従が逆転している
+
+AFTERNOON #01 の実物では、**「PLAYLIST」の文字が画面の上半分を占める主役**になっており、**人物は画面幅の約15%の脇役**に置かれている。
+
+サムネイルでクリックを生むのは「人物・表情・情景」であり、「PLAYLIST」という単語ではない。
+スマホの一覧表示（実表示サイズ 約168×94px）では、この構図は「青い四角＋大きな文字＋小さな染み」にしか見えない。**CTR 3.8% の天井の正体はこれ。**
+
+### 改訂方針: 主従を入れ替える
+
+| 要素 | 現状 | 改訂後 |
+|---|---|---|
+| 人物の占有幅 | 約15% | **30〜35%**（膝上〜上半身。バストアップまで寄せると「1人きりの広い座席」の情緒が消えるため、中間を取る） |
+| 「PLAYLIST」 | 画面上半分を占有 | **縮小**し、窓の上部に収める。世界観は残しつつ主役の座を人物に渡す |
+| アートスタイル | 水彩イラスト | **変更しない**（最大の資産） |
+| 舞台 | 電車内 | 変更しない |
+
+### 制作方式の変更: 文字は「描かせない」で「乗せる」
+
+**AI生成画像に文字を描かせることをやめる。**
+
+理由:
+1. AI画像生成の文字は毎回崩れる。4本で位置・書体・サイズを揃えられない＝**ブランド資産として機能しない**
+2. シリーズ名（AFTERNOON等）を追加できない
+3. 位置が固定できないため、規約 §4 の「Y座標完全固定」が守れない
+
+**新方式**
+```
+① 水彩イラストを「文字なし」で生成（プロンプトに no text, no lettering を明記）
+② Canvaで「PLAYLIST」をテキストレイヤーとして追加
+   → 青紫系の色・不透明度65〜75%で、水彩に溶け込ませる
+   → 位置・書体・サイズを4本で完全固定 ＝ ここで初めて本物のブランド資産になる
+③ その直下にシリーズ名を同じ処理で追加
+④ 左上の「Ai」ウォーターマークをトリミングまたは被せて除去
+```
+これにより「窓に文字が溶けている」という現行のコンセプトを保ったまま、再現性と拡張性を獲得する。
+
+---
+
+## 1. 各動画の診断（初版 / §1.5 の訂正を優先すること）
 
 | # | 動画 | 実測 | 該当する問題（C1〜C4） | 診断 |
 |---|---|---|---|---|
@@ -27,7 +79,15 @@
 電車の窓際シート、女性1人をバストアップまで寄せる。体は斜め45度、視線は車窓の外（画面右外）へ。午後の陽光が斜めから顔の片側に強く当たり、反対側に陰影を作る（順光と逆光の中間、コントラスト強め）。背景の車内・街並みは大きくぼかし、光は黄金色〜琥珀色を強調。
 
 ```
-A young woman sitting by a train window in the afternoon, bust-up shot, three-quarter angle, warm golden sunlight hitting one side of her face creating soft directional shadow, gazing out of the frame to the right, blurred train interior and cityscape in background, warm amber and honey color tones, high contrast between light and shadow, cinematic photo, shallow depth of field, 1280x720
+Watercolor illustration in a delicate Japanese anime art style, a young woman
+with long wavy brown hair wearing over-ear headphones, an oversized white
+t-shirt and light blue wide-leg jeans, sitting alone on a dark blue train
+bench seat, knee-up framing so she occupies the center third of the frame,
+turned slightly to the side, looking out of the train window away from the
+viewer, bright early-afternoon summer light, blurred Tokyo cityscape and
+white clouds seen through the large window behind her, soft watercolor washes
+with visible paper texture, delicate ink linework, muted blue and cream
+palette, calm and quiet mood, no text, no lettering, no watermark, 16:9
 ```
 
 **構図（B案）**
