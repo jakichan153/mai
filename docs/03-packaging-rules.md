@@ -173,6 +173,7 @@ AFTERNOON #01 の改訂実作業をもって確定。以後の全動画はこの
 | シリーズ | プロンプト | 生成日 |
 |---|---|---|
 | AFTERNOON | `Seamless 8-second loop, woman sitting by a train window in warm afternoon light, subtle breathing motion, hair gently moving, sunlight flickering softly through passing scenery outside the window, no camera movement, cinematic warm tone, loopable` | 未生成（`docs/05-thumbnail-revision.md` §6 案） |
+| AFTERNOON #02 | `Seamless 8-second loop, woman resting her cheek on her hand by a train window in late-afternoon golden light, eyes gently closed in a peaceful expression, subtle breathing motion, hair softly swaying, warm amber light flickering through passing scenery outside the window, no camera movement, soft watercolor illustration style, cinematic warm tone, loopable` | 未生成（`docs/videos/afternoon-02.md` サムネイル章・A案） |
 | NIGHT DRIVE | `Seamless 8-second loop, man driving at night, city neon lights softly flickering and streaking past the windshield, subtle hand movement on the steering wheel, no camera movement, moody blue and magenta tone, loopable` | 未生成（`docs/05-thumbnail-revision.md` §6 案） |
 | MORNING | `Seamless 8-second loop, man standing on a train station platform at sunrise, soft morning breeze moving his hair and coat slightly, faint light rays shifting, no camera movement, pale blue backlit tone, loopable` | 未生成（`docs/05-thumbnail-revision.md` §6 案） |
 | MIDNIGHT | `Seamless 8-second loop, woman standing by a window at night holding a warm mug, gentle steam rising, faint city lights twinkling outside, no camera movement, warm low-light tone, loopable` | 未生成（`docs/05-thumbnail-revision.md` §6 案） |
@@ -181,6 +182,7 @@ AFTERNOON #01 の改訂実作業をもって確定。以後の全動画はこの
 | シリーズ | 構図メモ | ファイル |
 |---|---|---|
 | AFTERNOON | バストアップ・電車窓際・斜め45度・暖色ハイコントラスト（推奨A案、`docs/05-thumbnail-revision.md` §2.1） | 未生成（差し替え後に `assets/thumbnails/afternoon_01_v2.png` へ格納予定） |
+| AFTERNOON #02 | #01継承・膝上30%占有・頬杖＋目を閉じるポーズで差別化・やや傾いた琥珀光（推奨A案、`docs/videos/afternoon-02.md` サムネイル章） | 未生成（生成後に `assets/thumbnails/afternoon_02.png` へ格納予定） |
 | NIGHT DRIVE | 現行踏襲＋わずかに寄り・シリーズ名追加のみ（推奨A案、`docs/05-thumbnail-revision.md` §2.2） | 未生成（差し替え後に `assets/thumbnails/nightdrive_01_v2.png` へ格納予定） |
 | MORNING | 舞台を駅のホームへ変更・逆光リムライト＋表情視認（推奨B案、`docs/05-thumbnail-revision.md` §2.3） | 未生成（差し替え後に `assets/thumbnails/morning_01_v2.png` へ格納予定） |
 | MIDNIGHT | 1人に削減・窓辺でマグカップ・要素最小化（推奨A案、`docs/05-thumbnail-revision.md` §2.4） | 未生成（差し替え後に `assets/thumbnails/midnight_01_v2.png` へ格納予定） |
