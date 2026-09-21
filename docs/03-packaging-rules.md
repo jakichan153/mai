@@ -164,7 +164,7 @@ AFTERNOON #01 の改訂実作業をもって確定。以後の全動画はこの
 ### 4.1 Suno（作曲）
 | シリーズ | ベースプロンプト | 備考 |
 |---|---|---|
-| AFTERNOON | `warm indie pop, soft female english vocals, mellow electric guitar, relaxed mid-tempo, 85bpm, lo-fi texture` | 要調整 |
+| AFTERNOON | `warm indie pop, breathy soft female english vocals, mellow clean electric guitar with light chorus, warm rhodes electric piano, brushed soft drum kit, relaxed mid-tempo groove, 72-88bpm, warm analog lo-fi texture, subtle tape saturation, faint vinyl crackle, intimate close-mic vocal tone, smooth even dynamics, cozy sunlit afternoon mood, unhurried pacing`<br>Exclude: `shouting, belting, distorted vocals, harsh cymbals, loud chorus drops, sudden tempo change, aggressive drums, EDM build-up, screaming, heavy distortion` | **確定（AFTERNOON #02にて確定、詳細は `docs/videos/afternoon-02.md`）**。bpmは72-88の幅で曲順に沿って緩やかに下降させる運用。曲ごとの差分は楽器比率と情景のみ |
 | NIGHT DRIVE | `city pop / synthwave, male english vocals, analog synth pads, 100bpm, night drive mood` | 要調整 |
 | MORNING | `bright acoustic pop, airy english vocals, clean guitar, 95bpm, fresh morning air` | 要調整 |
 | MIDNIGHT | `ambient lofi, whispered english vocals, rhodes piano, 70bpm, late night intimacy` | 要調整 |
