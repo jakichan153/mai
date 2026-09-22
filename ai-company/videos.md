@@ -54,8 +54,12 @@
 
 ### 公開後の修正
 
-- タイトルを `Japanese Ambience for Study & Work — Temple in the Rain | 1 Hour BGM` に差し替え
-- サムネに文字を追加
+- **実施済み**: タイトルを `Japanese Ambience for Study & Work — Temple in the Rain | 1 Hour BGM` に差し替え
+- **実施済み**: 再生リスト「隠り世の音 / Hidden Japan」を作成し、Vol.1・Vol.2 を追加
+- **未実施**: サムネへの文字追加（元画像が手元にないため保留）
+
+差し替えの効果を測るには、差し替え前後でクリック率を比較する。
+差し替えた日付が分かり次第ここに追記する。
 
 ---
 
