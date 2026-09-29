@@ -1,33 +1,31 @@
-# 隠り世の音 Vol.2 紅葉 — 曲順
+# 隠り世の音 Vol.3 月夜のすすき野 — 曲順
 #
 # 上から順に 01, 02, ... と番号が振り直されます。
 # 行頭に # を付けると使いません（_unused/ に移動するだけで消えません）。
 # npm run reorder で適用します。
 
-# ---- 入り（1曲目は「静かだが世界が立ち上がる曲」。無音に近い曲は置かない）----
-A01 Golden Autumn Calm
-A03 Morning Light in the Garden
-A02 Golden Maple Wind
-A04 Red Leaf Path
+# ---- 入り（1曲目は検品済み。立ち上がり2.5秒）----
+01-Moonlit Grass Field
+03-First Stars of the Moonlit
+02-Silver Pampas
+04-Moonlit Path
 
-# ---- 深まり（昼から夜へ。祭りで一度だけ頂点をつくり、そこから暮れていく）----
-B03 Maple Forest at Midday
-B10 Autumn Bamboo Wind
-B08 Red Leaves on the River
-B05 Golden Autumn Road
-B01 Autumn Town Drift
-B02 Autumn at the Shrine
-B11 Autumn Torii Path
-B07 autumn festival theme
-B12 Autumn Lantern Street
-B09 Sunset on the Village Road
-B06 rain on fallen leaves
-B04 Autumn Evening
-B14 Autumn Dusk
-B13 First Night of Autumn
+# ---- 深まり（野に入り、祭りで一度だけ頂点、そこから夜が深まる）----
+08-Moonlit Grass Wind
+06-Hidden Shrine Arpeggio
+12-Moonlit Grass
+07-Silver River Under the Moon
+05-Silver Moon Pulse
+09-Moonlit Road
+13-Moonlit Shinobue
+11-Moonlit Longing
+15-Moonlit Grass
+10-Midnight Moonlit Jazz
 
-# ---- ほどき（帰り道 → 最後の暖かい夜 → 別れ → 最後の一葉）----
-C02 Red Maple Walk
-C03 Last Warm Evening
-C01 Autumn Farewell
-C04 Final Leaf
+# ---- ほどき（月が高い → 帰路 → 終曲 → 別れ → 露 → 最初の光）----
+17-Highest Moon
+19-Returning Under the Moon
+18-Moonlit Koto
+20-Moonlit Farewell
+21-Dew Before Sunrise
+22-First Light over the Field
