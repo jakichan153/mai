@@ -62,6 +62,30 @@ model: opus
 
 あわせて `ai-company/config.json` の `video` 設定の推奨値も出してください（`zoomAmount` `loopSeconds` など）。
 
+## 背景を動画にする場合（Kling など）
+
+**動かしたいものを主語にして文の先頭に置く。止める指示は最小限にする。**
+
+Vol.3 で失敗した。草と綿毛だけを動かしたかったのに、
+「旅人は止まったまま」「月も雲も山も静止」「カメラは動かさない」と
+静止の指示を並べた結果、**全体がほぼ静止した動画**が出てきた。
+動かす対象が、大量の静止指示に埋もれていた。
+
+書き方の順序:
+
+1. 動かすものを具体的に、強さを添えて先に書く
+   （例: `The tall pampas grass sways clearly in a steady night breeze`）
+2. 止めるのは**カメラと人物の向きだけ**にする
+3. 残りはネガティブプロンプトに回す
+
+ネガティブプロンプトに入れるもの:
+`camera movement, zoom, pan, the person turning around, face visible, walking away,
+fast motion, flickering, morphing, extra limbs, text, watermark`
+
+**動画生成に頼らない選択肢も常に示すこと。** Vol.3 は結局、編集ソフトで
+風のエフェクトを足して解決した。生成がうまくいかないときに、
+クレジットを消費し続けるより確実で速い。
+
 ## やらないこと
 
 - 動きのある要素を入れない。点滅、コントラストの強い文字は禁止
