@@ -22,7 +22,10 @@ ffmpeg は npm パッケージに同梱されているので、**別途インス
 ## 使い方
 
 1. `ai-company/assets/music/` に Suno の曲を置く（mp3 / wav / m4a / flac / ogg）
-2. `ai-company/assets/background/` に Canva で作った背景画像を置く（png / jpg）
+2. `ai-company/assets/background/` に背景を置く
+   - **画像**（png / jpg / webp）… 静止画の背景になります
+   - **動画**（mp4 / mov / webm）… Kling などで作った数秒の素材を置くと、
+     **順再生と逆再生をつないで継ぎ目を消し**、音声の長さぶん繰り返します
 3. **曲順を確定する**（任意）
 
 `order.txt` に並べたい順で曲名を書き、実行します。
@@ -96,6 +99,7 @@ node ai-company/build.js
 | `crossfadeSeconds` | 曲の重なり秒数。長いほど繋ぎ目が滑らかになる |
 | `loudnessNormalize` | **曲ごとに音量を測って -14 LUFS に揃える。** 基本は `true` のまま |
 | `video.loopSeconds` | 背景ループの長さ。長いほど繰り返し感が減るが、書き出しも遅くなる |
+| `video.pingPong` | 背景が動画のとき、順＋逆でつないで継ぎ目を消す。`false` でそのまま繰り返す |
 | `video.zoomAmount` | ズームの強さ。**`0` で完全な静止画**（既定値）。`0.08` にすると 8% ゆっくり拡大縮小する |
 
 ## 仕組み（なぜ速いのか）

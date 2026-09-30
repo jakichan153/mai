@@ -7,9 +7,9 @@ const path = require("node:path");
 const { collectTracks, buildPlaylist, renderTracklist, formatTimestamp } = require("./src/playlist");
 const { buildAudio } = require("./src/audio");
 const { measureLoudness, gainToTarget, TARGET_LUFS } = require("./src/loudness");
-const { buildLoop, muxWithAudio } = require("./src/video");
+const { buildLoop, buildLoopFromVideo, muxWithAudio, isVideo } = require("./src/video");
 
-const IMAGE_EXT = new Set([".png", ".jpg", ".jpeg", ".webp"]);
+const IMAGE_EXT = new Set([".png", ".jpg", ".jpeg", ".webp", ".mp4", ".mov", ".webm", ".m4v"]);
 
 // config.json 内のフォルダ指定は、このファイルがある場所を基準に解決する。
 // こうしておくと、どのフォルダから実行しても同じように動く。
@@ -84,8 +84,15 @@ async function main() {
 
   // --- 3. 背景のズームループを作る ---
   const background = pickBackground(resolve(config.backgroundDir));
-  log("3/4", `背景に ${path.basename(background)} を使います`);
-  await buildLoop(background, loopFile, config.video);
+  if (isVideo(background)) {
+    const pingPong = config.video.pingPong !== false;
+    log("3/4", `背景に動画 ${path.basename(background)} を使います` +
+      (pingPong ? "（順再生と逆再生をつないで継ぎ目を消します）" : ""));
+    await buildLoopFromVideo(background, loopFile, { ...config.video, pingPong });
+  } else {
+    log("3/4", `背景に ${path.basename(background)} を使います`);
+    await buildLoop(background, loopFile, config.video);
+  }
 
   // --- 4. ループを繰り返して音声と合成する ---
   log("4/4", "動画を書き出しています…");
