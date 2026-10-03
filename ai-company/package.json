@@ -7,6 +7,7 @@
     "check": "node check.js",
     "audio": "node audio.js",
     "thumbnail": "node thumbnail.js",
+    "short": "node short.js",
     "build": "node build.js"
   },
   "repository": {

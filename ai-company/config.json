@@ -13,5 +13,13 @@
     "fps": 30,
     "loopSeconds": 60,
     "zoomAmount": 0
+  },
+  "short": {
+    "track": "",
+    "startSeconds": 60,
+    "durationSeconds": 45,
+    "mode": "crop",
+    "cropX": 0.72,
+    "fadeSeconds": 2
   }
 }
