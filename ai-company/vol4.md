@@ -28,7 +28,7 @@ Vol.1 も雨ですが、紫陽花の青緑（梅雨）と峠の灰緑（秋雨�
 
 ## 1. 曲（アヤ・構成 ＋ カノン・音響）
 
-**22曲・目標1時間強。** Suno にそのまま貼れる英語プロンプトです。
+**22曲ぶんのプロンプトです（実際に採用したのは20曲。下の「確定した曲順」を参照）。** Suno にそのまま貼れる英語プロンプトです。
 曲名は Suno のタイトル欄にこの英語を入れてください（ダウンロードしたファイル名が
 そのまま曲順に使えます）。
 
@@ -353,14 +353,14 @@ All music is original and composed for this channel.
 
 ### 使う曲
 
-**`19 Koto After the Rain` を推します。** ショートは最初の1〜2秒で勝負が決まるので、
+**`18 - Koto After the Rain`（元19）を推します。** ショートは最初の1〜2秒で勝負が決まるので、
 琴のはっきりした旋律が立っている曲がいいです。
 
 ### 設定（`config.json` の `short`）
 
 ```json
 "short": {
-  "track": "19-Koto After the Rain",
+  "track": "18 - Koto After the Rain.mp3",
   "startSeconds": 30,
   "durationSeconds": 45,
   "mode": "crop",
@@ -389,8 +389,8 @@ Rain on a Japanese mountain pass 🍁 #shorts #japanesemusic #studymusic #rainso
 
 | 順 | やること | 担当 |
 |---|---|---|
-| 1 | Suno で22曲作る（1曲目だけ検品） | 舞さん |
-| 2 | ChatGPT で横型＋縦型の画を作る | 舞さん |
+| 1 | ~~Suno で曲を作る~~ **完了（20曲）** | 舞さん |
+| 2 | ~~ChatGPT で画を作る~~ **横型は完了** | 舞さん |
 | 3 | `assets/music/` に入れて `npm run check` | 舞さん |
 | 4 | 曲順の確定（`order.txt` は先に書いてあります） | チーム |
 | 5 | `npm run reorder` → `npm run audio` | 舞さん |
@@ -401,3 +401,45 @@ Rain on a Japanese mountain pass 🍁 #shorts #japanesemusic #studymusic #rainso
 
 **1本3時間以内で終わらせます。** 詰まったら曲数を18に落として先に出しましょう。
 いま一番効くのは完成度ではなく本数です。
+
+---
+
+## 確定した曲順（20曲）
+
+元の **11 Autumn Rain Jazz** と **21 Dripping Eaves** は作っていないため欠番。
+`order.txt` はこの形に更新済みで、`npm run reorder` で番号が 01〜20 に繰り上がります。
+
+| 新 | 曲名 | 元 | 章 |
+|---|---|---|---|
+| 01 | Rain on the Pass | 01 | 入り |
+| 02 | First Drops on Cedar | 02 | 入り |
+| 03 | Stone Steps in Mist | 03 | 入り |
+| 04 | Climbing the Wet Road | 04 | 入り |
+| 05 | Cedar Corridor | 05 | 深まり |
+| 06 | Small Shrine Under Rain | 06 | 深まり |
+| 07 | Mountain Mist Breathing | 07 | 深まり |
+| 08 | Biwa in the Rain | 08 | 深まり |
+| 09 | Rain Through Bamboo | 09 | 深まり |
+| 10 | Stone Jizo at the Bend | 10 | 深まり |
+| — | ~~Autumn Rain Jazz~~ | 11 | **欠番** |
+| 11 | Red Maple Wet with Rain | 12 | 深まり |
+| 12 | Shakuhachi in the Fog | 13 | 深まり |
+| 13 | The Rain Grows Heavy | 14 | 深まり |
+| 14 | Shelter Under the Eaves | 15 | 深まり |
+| 15 | The Pass at Last | 16 | ほどき |
+| 16 | Rain Thinning | 17 | ほどき |
+| 17 | Break in the Clouds | 18 | ほどき |
+| 18 | Koto After the Rain | 19 | ほどき |
+| 19 | Lights in the Valley | 20 | ほどき |
+| — | ~~Dripping Eaves~~ | 21 | **欠番** |
+| 20 | Clear Sky Over the Ridge | 22 | ほどき |
+
+### 2曲抜けたことの影響（アヤ・構成）
+
+- **ジャズ（元11）が抜けて、深まりに山がなくなった。** 作業用BGMとしては
+  むしろ正しい形（中盤は起伏を抑えるのが原則）なので、**そのまま進めます**。
+  変化が欲しければ 09 Rain Through Bamboo が中盤の明るい側に立っています
+- **Dripping Eaves（元21）が抜けて、終盤の「ほぼ無音」が1曲なくなった。**
+  19 Lights in the Valley → 20 Clear Sky Over the Ridge で十分に落ちます
+- **雨を切る位置は変わりません。** 17 Break in the Clouds 以降が雨なしなので、
+  ザーという音が途中で消える段差は起きません

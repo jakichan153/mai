@@ -1,39 +1,35 @@
-# 隠り世の音 Vol.4 秋雨の峠 — 曲順
+# 隠り世の音 Vol.4 秋雨の峠 — 曲順（20曲）
 #
-# 上から順に 01, 02, ... と番号が振り直されます。
-# 行頭に # を付けると使いません（_unused/ に移動するだけで消えません）。
-# npm run reorder で適用します。
+# 元の 11（Autumn Rain Jazz）と 21（Dripping Eaves）は作っていないため欠番。
+# この並びで npm run reorder を実行すると、番号が 01〜20 に繰り上がります。
 #
-# Suno のタイトルを vol4.md の通りに付けていれば、この並びのままで合います。
-# 作れなかった曲は行頭に # を付けて飛ばしてください。
-# 入れる前に npm run check でファイル名を確認すること。
+# 行頭の番号は「いま assets/music/ にあるファイル名」です。
+# npm run reorder が合わないと言ってきたら、npm run check の結果を貼ってください
+# （名前が1文字でも違うと、何も変更せずに止まる作りになっています）。
 
-# ---- 入り（峠の麓・雨が降り始める）----
-# 1曲目は10秒以内に琴が立ち上がるか必ず検品する
+# ---- 入り（峠の麓・雨が降り始める）→ 01〜04 ----
 01-Rain on the Pass
 02-First Drops on Cedar
 03-Stone Steps in Mist
 04-Climbing the Wet Road
 
-# ---- 深まり（峠道・杉林・霧・祠。11でジャズが一度だけ頂点を作る）----
+# ---- 深まり（峠道・杉林・霧・祠）→ 05〜14 ----
 05-Cedar Corridor
 06-Small Shrine Under Rain
 07-Mountain Mist Breathing
 08-Biwa in the Rain
 09-Rain Through Bamboo
 10-Stone Jizo at the Bend
-11-Autumn Rain Jazz
 12-Red Maple Wet with Rain
 13-Shakuhachi in the Fog
 14-The Rain Grows Heavy
 15-Shelter Under the Eaves
 
-# ---- ほどき（峠を越える → 雨が薄まる → 雨が止む → 谷の灯り → 終曲）----
-# 雨の有無の段差が出ないよう、雨を切るのは18以降だけにしてある
+# ---- ほどき（峠を越える → 雨が薄まる → 雨が止む → 谷の灯り → 終曲）→ 15〜20 ----
+# 雨の有無の段差が出ないよう、雨を切るのは「Break in the Clouds」以降だけ
 16-The Pass at Last
 17-Rain Thinning
 18-Break in the Clouds
 19-Koto After the Rain
 20-Lights in the Valley
-21-Dripping Eaves
 22-Clear Sky Over the Ridge
