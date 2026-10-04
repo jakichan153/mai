@@ -336,7 +336,26 @@ All music is original and composed for this channel.
 琴・尺八・篠笛・琵琶と、雨の音で。すべてこのチャンネルのための書き下ろしです。
 
 ── Tracklist ──
-（ここに npm run audio が出すタイムスタンプを貼ります）
+0:00:00 Rain on the Pass
+0:02:34 First Drops on Cedar
+0:06:00 Stone Steps in Mist
+0:09:09 Climbing the Wet Road
+0:12:08 Cedar Corridor
+0:15:37 Small Shrine Under Rain
+0:21:27 Mountain Mist Breathing
+0:25:03 Biwa in the Rain
+0:28:18 Rain Through Bamboo
+0:31:37 Stone Jizo at the Bend
+0:34:52 Red Maple Wet with Rain
+0:38:31 Shakuhachi in the Fog
+0:41:07 The Rain Grows Heavy
+0:44:52 Shelter Under the Eaves
+0:48:10 The Pass at Last
+0:51:29 Rain Thinning
+0:54:57 Break in the Clouds
+0:58:20 Koto After the Rain
+1:01:19 Lights in the Valley
+1:04:45 Clear Sky Over the Ridge
 
 ── Playlist ──
 隠り世の音 / Hidden Japan

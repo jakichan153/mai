@@ -32,10 +32,16 @@ function buildFilter(tracks, crossfadeSeconds, matchLoudness) {
 
 // 出力の形式は拡張子で決める。.mp3 なら MP3、それ以外は AAC。
 // MP3 はどのソフトでも読めるので、Canva など別のソフトに渡すときに使う。
+//
+// -map_metadata -1 で、元の曲に付いているメタデータを出力に持ち越さない。
+// Suno の wav には "made with suno studio" のほか、曲によっては
+// project=... という長い内部トークンが入っている。既定では1曲目のものが
+// そのまま出力に書き込まれてしまうため、捨ててから書き出す。
 function encoderFor(outputFile) {
-  return outputFile.toLowerCase().endsWith(".mp3")
+  const codec = outputFile.toLowerCase().endsWith(".mp3")
     ? ["-c:a", "libmp3lame", "-b:a", "256k"]
     : ["-c:a", "aac", "-b:a", "256k"];
+  return [...codec, "-map_metadata", "-1"];
 }
 
 async function buildAudio(tracks, outputFile, { crossfadeSeconds, loudnessNormalize }) {

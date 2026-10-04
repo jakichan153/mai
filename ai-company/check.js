@@ -131,7 +131,7 @@ async function main() {
     const ideal = Math.round((targetSeconds - crossfade) / (average - crossfade));
     console.log(`\nずれが大きいです。この平均の長さなら ${ideal} 曲がちょうど良い計算です。`);
   } else {
-    console.log("\n狙い通りです。このまま npm run build で書き出せます。");
+    console.log("\n狙い通りです。このまま npm run audio で書き出せます。");
   }
 }
 
