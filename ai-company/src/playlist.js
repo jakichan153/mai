@@ -30,6 +30,19 @@ function titleFromFilename(file) {
   return path.basename(file, path.extname(file)).replace(TRACK_NUMBER, "").trim();
 }
 
+// order.txt に書いた行から曲名を作る。
+// こちらは「01 曲名」（記号なしの空白区切り）も落とす。
+// order.txt は全行に通し番号を振る前提で作っているので、
+// 先頭の数字は必ず通し番号であり、曲名の一部ではないと断定できる。
+// 表示用の titleFromFilename より強く落とすのは、この前提があるからで、
+// 落とすのは先頭1つだけなので「05 24 Hours of Rain」は
+// 「24 Hours of Rain」として正しく残る。
+const LEADING_INDEX = /^[A-Za-z]?\d+\s*[-_.]?\s*/;
+
+function titleFromOrderLine(name) {
+  return name.replace(LEADING_INDEX, "").trim();
+}
+
 // 秒 -> "H:MM:SS"（YouTube の章立てが認識する形式）
 function formatTimestamp(totalSeconds) {
   const s = Math.max(0, Math.floor(totalSeconds));
@@ -95,4 +108,4 @@ function renderTracklist({ tracks, totalDuration }) {
   ].join("\n");
 }
 
-module.exports = { collectTracks, buildPlaylist, renderTracklist, formatTimestamp, getDuration, titleFromFilename };
+module.exports = { collectTracks, buildPlaylist, renderTracklist, formatTimestamp, getDuration, titleFromFilename, titleFromOrderLine };

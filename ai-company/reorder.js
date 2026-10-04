@@ -4,7 +4,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const { titleFromFilename } = require("./src/playlist");
+const { titleFromOrderLine } = require("./src/playlist");
 
 const resolve = (relativePath) => path.resolve(__dirname, relativePath);
 const AUDIO_EXT = new Set([".mp3", ".wav", ".m4a", ".flac", ".ogg"]);
@@ -61,7 +61,7 @@ function main() {
     return {
       current,
       temporary: `__tmp_${index}${path.extname(current)}`,
-      final: `${number} - ${titleFromFilename(name)}${path.extname(current)}`,
+      final: `${number} - ${titleFromOrderLine(name)}${path.extname(current)}`,
     };
   });
 
