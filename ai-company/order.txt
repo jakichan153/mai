@@ -1,31 +1,39 @@
-# 隠り世の音 Vol.3 月夜のすすき野 — 曲順
+# 隠り世の音 Vol.4 秋雨の峠 — 曲順
 #
 # 上から順に 01, 02, ... と番号が振り直されます。
 # 行頭に # を付けると使いません（_unused/ に移動するだけで消えません）。
 # npm run reorder で適用します。
+#
+# Suno のタイトルを vol4.md の通りに付けていれば、この並びのままで合います。
+# 作れなかった曲は行頭に # を付けて飛ばしてください。
+# 入れる前に npm run check でファイル名を確認すること。
 
-# ---- 入り（1曲目は検品済み。立ち上がり2.5秒）----
-01-Moonlit Grass Field
-03-First Stars of the Moonlit
-02-Silver Pampas
-04-Moonlit Path
+# ---- 入り（峠の麓・雨が降り始める）----
+# 1曲目は10秒以内に琴が立ち上がるか必ず検品する
+01-Rain on the Pass
+02-First Drops on Cedar
+03-Stone Steps in Mist
+04-Climbing the Wet Road
 
-# ---- 深まり（野に入り、祭りで一度だけ頂点、そこから夜が深まる）----
-08-Moonlit Grass Wind
-06-Hidden Shrine Arpeggio
-12-Moonlit Grass
-07-Silver River Under the Moon
-05-Silver Moon Pulse
-09-Moonlit Road
-13-Moonlit Shinobue
-11-Moonlit Longing
-15-Moonlit Grass
-10-Midnight Moonlit Jazz
+# ---- 深まり（峠道・杉林・霧・祠。11でジャズが一度だけ頂点を作る）----
+05-Cedar Corridor
+06-Small Shrine Under Rain
+07-Mountain Mist Breathing
+08-Biwa in the Rain
+09-Rain Through Bamboo
+10-Stone Jizo at the Bend
+11-Autumn Rain Jazz
+12-Red Maple Wet with Rain
+13-Shakuhachi in the Fog
+14-The Rain Grows Heavy
+15-Shelter Under the Eaves
 
-# ---- ほどき（月が高い → 帰路 → 終曲 → 別れ → 露 → 最初の光）----
-17-Highest Moon
-19-Returning Under the Moon
-18-Moonlit Koto
-20-Moonlit Farewell
-21-Dew Before Sunrise
-22-First Light over the Field
+# ---- ほどき（峠を越える → 雨が薄まる → 雨が止む → 谷の灯り → 終曲）----
+# 雨の有無の段差が出ないよう、雨を切るのは18以降だけにしてある
+16-The Pass at Last
+17-Rain Thinning
+18-Break in the Clouds
+19-Koto After the Rain
+20-Lights in the Valley
+21-Dripping Eaves
+22-Clear Sky Over the Ridge

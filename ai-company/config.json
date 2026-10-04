@@ -1,5 +1,5 @@
 {
-  "title": "深夜の書庫",
+  "title": "秋雨の峠",
   "musicDir": "assets/music",
   "backgroundDir": "assets/background",
   "outputDir": "out",
@@ -15,11 +15,11 @@
     "zoomAmount": 0
   },
   "short": {
-    "track": "",
-    "startSeconds": 60,
+    "track": "19-Koto After the Rain",
+    "startSeconds": 30,
     "durationSeconds": 45,
     "mode": "crop",
-    "cropX": 0.72,
+    "cropX": 0.5,
     "fadeSeconds": 2
   }
 }
