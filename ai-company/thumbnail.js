@@ -6,20 +6,11 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const { ffmpeg } = require("./src/ffmpeg");
+const { pickBackground } = require("./src/background");
 
 const resolve = (relativePath) => path.resolve(__dirname, relativePath);
-const IMAGE_EXT = new Set([".png", ".jpg", ".jpeg", ".webp"]);
 const MAX_BYTES = 2 * 1024 * 1024;
 
-function pickBackground(dir) {
-  if (!fs.existsSync(dir)) throw new Error(`背景フォルダがありません: ${dir}`);
-  const images = fs.readdirSync(dir)
-    .filter((name) => !name.startsWith("."))
-    .filter((name) => IMAGE_EXT.has(path.extname(name).toLowerCase()))
-    .sort();
-  if (images.length === 0) throw new Error(`背景画像が見つかりません: ${dir}`);
-  return path.join(dir, images[0]);
-}
 
 function createOutputDir(baseDir) {
   const now = new Date();
@@ -32,7 +23,8 @@ function createOutputDir(baseDir) {
 
 async function main() {
   const config = JSON.parse(fs.readFileSync(resolve("config.json"), "utf8"));
-  const source = pickBackground(resolve(config.backgroundDir));
+  // サムネイルは 16:9 なので横画像を使う。縦画像を掴まないようにする
+  const source = await pickBackground(resolve(config.backgroundDir), { orientation: "landscape" });
   const outputDir = createOutputDir(resolve(config.outputDir));
   const outputFile = path.join(outputDir, "thumbnail.jpg");
 

@@ -6,9 +6,8 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const { collectTracks, getDuration, formatTimestamp } = require("./src/playlist");
-const { ffprobe } = require("./src/ffmpeg");
+const { listBackgrounds, LABEL } = require("./src/background");
 
-const IMAGE_EXT = new Set([".png", ".jpg", ".jpeg", ".webp"]);
 
 const resolve = (relativePath) => path.resolve(__dirname, relativePath);
 
@@ -18,29 +17,40 @@ function formatLength(seconds) {
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 }
 
-// 背景画像の寸法を調べる。ファイルサイズでは判断できないため。
+// 背景の寸法を調べる。ファイルサイズでは判断できないため。
+// 横（サムネイル・長尺用）と縦（ショート用）を分けて表示する。
 async function checkBackground(dir, video) {
   if (!fs.existsSync(dir)) return console.log("\n背景フォルダがありません。");
 
-  const images = fs.readdirSync(dir)
-    .filter((name) => !name.startsWith("."))
-    .filter((name) => IMAGE_EXT.has(path.extname(name).toLowerCase()));
+  const entries = await listBackgrounds(dir);
+  if (entries.length === 0) return console.log("\n背景画像がまだありません。");
 
-  if (images.length === 0) return console.log("\n背景画像がまだありません。");
-  if (images.length > 1) {
-    console.log(`\n背景画像が ${images.length} 枚あります。使われるのは名前順で最初の 1 枚だけです:`);
-    for (const name of images) console.log(`  ${name}`);
+  console.log(`\n背景画像 ${entries.length} 枚:`);
+  for (const e of entries) console.log(`  ${e.name}  ${e.width} × ${e.height}（${LABEL[e.orientation]}）`);
+
+  const newestFirst = (a, b) => b.modifiedAt - a.modifiedAt;
+  const landscape = entries.filter((e) => e.orientation !== "portrait").sort(newestFirst)[0];
+  const portrait = entries.filter((e) => e.orientation === "portrait").sort(newestFirst)[0];
+
+  console.log("\n使われる画像（同じ向きが複数あるときは、いちばん新しいもの）:");
+  console.log(`  サムネイル・長尺: ${landscape ? landscape.name : "横画像がありません"}`);
+  console.log(`  ショート        : ${portrait ? portrait.name : "縦画像がありません（横画像を切り取って代用します）"}`);
+
+  // ショートは 1080×1920 に引き伸ばされる。元が小さいと粗が出る
+  if (portrait) {
+    console.log(`\n縦画像の確認（${portrait.name}）:`);
+    if (portrait.width >= 1080) {
+      console.log("  解像度: 十分です（ショートの1080pxを満たしています）");
+    } else {
+      const scale = (1080 / portrait.width).toFixed(2);
+      console.log(`  解像度: 幅 ${portrait.width}px なので ${scale} 倍に引き伸ばされます（1080px以上が理想）`);
+    }
   }
 
-  const file = path.join(dir, images.sort()[0]);
-  const out = await ffprobe([
-    "-v", "error", "-select_streams", "v:0",
-    "-show_entries", "stream=width,height",
-    "-of", "csv=p=0", file,
-  ]);
-  const [width, height] = out.trim().split(",").map(Number);
+  if (!landscape) return;
 
-  console.log(`\n背景: ${path.basename(file)}  ${width} × ${height}`);
+  const { width, height } = landscape;
+  console.log(`\n横画像の確認（${landscape.name}）:`);
 
   // 必要な解像度はズームの有無で変わる。
   // ズームしない場合、映像はパイプラインで作らないので、

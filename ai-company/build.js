@@ -8,8 +8,8 @@ const { collectTracks, buildPlaylist, renderTracklist, formatTimestamp } = requi
 const { buildAudio } = require("./src/audio");
 const { measureLoudness, gainToTarget, TARGET_LUFS } = require("./src/loudness");
 const { buildLoop, buildLoopFromVideo, muxWithAudio, isVideo } = require("./src/video");
+const { pickBackground } = require("./src/background");
 
-const IMAGE_EXT = new Set([".png", ".jpg", ".jpeg", ".webp", ".mp4", ".mov", ".webm", ".m4v"]);
 
 // config.json 内のフォルダ指定は、このファイルがある場所を基準に解決する。
 // こうしておくと、どのフォルダから実行しても同じように動く。
@@ -20,16 +20,6 @@ function log(step, message) {
 }
 
 // 背景フォルダから画像を1枚選ぶ
-function pickBackground(dir) {
-  if (!fs.existsSync(dir)) throw new Error(`背景フォルダがありません: ${dir}`);
-  const images = fs.readdirSync(dir)
-    // 背景側も同様に、macOS の隠しファイルを除く
-    .filter((name) => !name.startsWith("."))
-    .filter((name) => IMAGE_EXT.has(path.extname(name).toLowerCase()))
-    .sort();
-  if (images.length === 0) throw new Error(`背景画像が見つかりません: ${dir}（Canva で作った画像を置いてください）`);
-  return path.join(dir, images[0]);
-}
 
 // out/20260824-1430/ のような作業フォルダを作る（1日に複数本作っても上書きされない）
 function createOutputDir(baseDir) {
@@ -83,7 +73,8 @@ async function main() {
   });
 
   // --- 3. 背景のズームループを作る ---
-  const background = pickBackground(resolve(config.backgroundDir));
+  // 横長の動画なので横向きの素材を使う
+  const background = await pickBackground(resolve(config.backgroundDir), { orientation: "landscape", includeVideo: true });
   if (isVideo(background)) {
     const pingPong = config.video.pingPong !== false;
     log("3/4", `背景に動画 ${path.basename(background)} を使います` +

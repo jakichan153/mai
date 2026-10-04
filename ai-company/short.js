@@ -8,21 +8,13 @@ const { ffmpeg } = require("./src/ffmpeg");
 const { collectTracks, getDuration, formatTimestamp } = require("./src/playlist");
 const { measureLoudness, gainToTarget } = require("./src/loudness");
 const { isVideo } = require("./src/video");
+const { pickBackground } = require("./src/background");
 
 const resolve = (relativePath) => path.resolve(__dirname, relativePath);
-const IMAGE_EXT = new Set([".png", ".jpg", ".jpeg", ".webp", ".mp4", ".mov", ".webm", ".m4v"]);
 
 const W = 1080;
 const H = 1920;
 
-function pickBackground(dir) {
-  const files = fs.readdirSync(dir)
-    .filter((name) => !name.startsWith("."))
-    .filter((name) => IMAGE_EXT.has(path.extname(name).toLowerCase()))
-    .sort();
-  if (files.length === 0) throw new Error(`背景が見つかりません: ${dir}`);
-  return path.join(dir, files[0]);
-}
 
 function createOutputDir(baseDir) {
   const now = new Date();
@@ -60,10 +52,16 @@ async function main() {
 
   // 使う曲を決める。指定がなければ最初の1曲
   const tracks = collectTracks(resolve(config.musicDir), { shuffle: false });
-  const track = s.track
-    ? tracks.find((f) => path.basename(f) === s.track)
+  // 拡張子は見ない。Suno からの書き出しが wav でも mp3 でも同じ設定で通るように、
+  // 曲名だけで照合する（config に ".mp3" と書いてあっても wav が見つかる）。
+  const wanted = s.track ? s.track.replace(/\.[^.]+$/, "") : null;
+  const track = wanted
+    ? tracks.find((f) => path.basename(f, path.extname(f)) === wanted)
     : tracks[0];
-  if (!track) throw new Error(`曲が見つかりません: ${s.track}`);
+  if (!track) {
+    const names = tracks.map((f) => `  ${path.basename(f)}`).join("\n");
+    throw new Error(`曲が見つかりません: ${s.track}\nフォルダにあるのは:\n${names}`);
+  }
 
   const trackLength = await getDuration(track);
   // 切り出し位置が曲の長さを超えないようにする
@@ -73,7 +71,8 @@ async function main() {
   console.log(`切出し: ${formatTimestamp(start)} から ${duration} 秒`);
   console.log(`画面 : ${mode === "blur" ? "ぼかし余白（構図を丸ごと残す）" : `切り出し（位置 ${cropX}）`}`);
 
-  const background = pickBackground(resolve(config.backgroundDir));
+  // ショートは 9:16。縦画像があればそれを使い、無ければ横画像を切り取って代用する
+  const background = await pickBackground(resolve(config.backgroundDir), { orientation: "portrait", includeVideo: true, fallback: true });
   const outputDir = createOutputDir(resolve(config.outputDir));
   const outputFile = path.join(outputDir, "short.mp4");
 
