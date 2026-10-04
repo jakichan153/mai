@@ -353,14 +353,17 @@ All music is original and composed for this channel.
 
 ### 使う曲
 
-**`18 - Koto After the Rain`（元19）を推します。** ショートは最初の1〜2秒で勝負が決まるので、
-琴のはっきりした旋律が立っている曲がいいです。
+**`06 - Small Shrine Under Rain` に決定。** 舞さんが実際に聴いて「とても印象的」と
+判断した曲です。番号は 01〜10 の範囲なので繰り上げの影響を受けません。
+
+ショートは最初の1〜2秒で勝負が決まります。`startSeconds` は
+**鈴（すず）か琴が鳴っている場所**に合わせること。無音や雨だけの場所から始めてはいけない。
 
 ### 設定（`config.json` の `short`）
 
 ```json
 "short": {
-  "track": "18 - Koto After the Rain.mp3",
+  "track": "06 - Small Shrine Under Rain.mp3",
   "startSeconds": 30,
   "durationSeconds": 45,
   "mode": "crop",
@@ -369,7 +372,7 @@ All music is original and composed for this channel.
 }
 ```
 
-- `startSeconds` は**旋律が出ている場所**にします。曲ができたら聴いて微調整します
+- `startSeconds` は**旋律が出ている場所**にします。30秒で鳴っていなければ数字をずらしてください
 - 縦画像を9:16で作ってもらうので `cropX` は 0.5（中央）でよく、切れません
 - ショートは自動でループするので、前後2秒のフェードは入れたままにします
 
