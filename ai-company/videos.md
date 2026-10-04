@@ -174,7 +174,8 @@ Kling で背景を動かそうとしたが、**ほぼ静止した動画**しか�
 - 公開: 未
 - 曲数 / 尺: 20曲 / 1:08:13（元11 Autumn Rain Jazz と元21 Dripping Eaves は未制作で欠番）
 - 画: 秋雨の峠（**旅人の後ろ姿あり**・灰緑と石、朱はアクセントのみ）
-- サムネ: 文字あり（`Autumn Rain` / `ON THE MOUNTAIN PASS`・**左下**・2行・薄い暗がりあり）
+- サムネ: **B案で確定**。文字あり（`Autumn Rain` / `ON THE MOUNTAIN PASS`・**左下**・2行・
+  左下から薄い暗がり）。1280×720 / 0.33MB
 - タイトル（案A）: `Japanese Rain Ambience — Autumn Rain on a Mountain Pass | Koto & Shakuhachi BGM for Study, 1 Hour`
 
 ### Vol.3 から変えた点（＝検証したいこと）
