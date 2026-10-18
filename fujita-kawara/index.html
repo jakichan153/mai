@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>藤田瓦施工店 | 福岡県直方市の屋根瓦施工・修理</title>
+  <meta name="description" content="福岡県直方市の藤田瓦施工店。経験30年の職人が屋根瓦の施工・修理を承ります。福岡県・佐賀県・大分県に対応。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho+B1:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    /* ===== 基本設定 ===== */
+    :root {
+      --bg: #f7f6f3;
+      --bg-dark: #2b3036;     /* いぶし瓦の濃いグレー */
+      --gin: #8a929b;         /* いぶし銀 */
+      --gin-light: #d9dde1;
+      --text: #24282d;
+      --text-sub: #5d656e;
+      --accent: #b23a2a;      /* 朱色 */
+      --accent-dark: #8e2c1f;
+      --line: #dcdcd6;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 72px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* 瓦の模様（波形の重なり） */
+    .kawara {
+      background-color: var(--bg-dark);
+      background-image:
+        radial-gradient(circle at 50% 0, transparent 0 17px, rgba(255, 255, 255, 0.07) 18px 20px, transparent 21px),
+        radial-gradient(circle at 50% 0, transparent 0 17px, rgba(255, 255, 255, 0.07) 18px 20px, transparent 21px);
+      background-size: 40px 20px;
+      background-position: 0 0, 20px 10px;
+    }
+
+    /* ===== ヘッダー ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247, 246, 243, 0.94);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-family: "Shippori Mincho B1", serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+    }
+
+    .nav .nav-tel {
+      padding: 6px 16px;
+      border-radius: 4px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .nav .nav-tel:hover {
+      background: var(--accent-dark);
+      color: #fff;
+    }
+
+    /* ===== メインビジュアル ===== */
+    .hero {
+      padding: 120px 0;
+      color: #fff;
+      text-align: center;
+    }
+
+    .hero-sub {
+      margin: 0 0 16px;
+      color: var(--gin-light);
+      letter-spacing: 0.2em;
+    }
+
+    .hero-title {
+      margin: 0 0 24px;
+      font-family: "Shippori Mincho B1", serif;
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.5;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-text {
+      margin: 0 0 40px;
+      font-size: 1.1rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      margin-bottom: 24px;
+      padding: 4px 18px;
+      border: 1px solid var(--gin);
+      color: var(--gin-light);
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+    }
+
+    /* ===== ボタン ===== */
+    .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      border-radius: 4px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .btn:hover {
+      background: var(--accent-dark);
+    }
+
+    /* ===== セクション共通 ===== */
+    .section {
+      padding: 96px 0;
+    }
+
+    .section-alt {
+      background: #fff;
+    }
+
+    .section-title {
+      margin: 0 0 48px;
+      text-align: center;
+      font-family: "Shippori Mincho B1", serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+    }
+
+    .section-title span {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent);
+      font-family: "Noto Sans JP", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+    }
+
+    .section-lead {
+      max-width: 680px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    /* ===== 事業内容 ===== */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .service {
+      padding: 40px 32px;
+      border-top: 4px solid var(--bg-dark);
+      background: var(--bg);
+    }
+
+    .service-label {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+    }
+
+    .service h3 {
+      margin: 4px 0 12px;
+      font-family: "Shippori Mincho B1", serif;
+      font-size: 1.5rem;
+    }
+
+    .service p {
+      margin: 0;
+      color: var(--text-sub);
+    }
+
+    /* ===== 選ばれる理由 ===== */
+    .points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .point {
+      padding: 32px 24px;
+      background: #fff;
+      border: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .point-big {
+      display: block;
+      font-family: "Shippori Mincho B1", serif;
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--bg-dark);
+    }
+
+    .point-big small {
+      font-size: 1rem;
+    }
+
+    .point h3 {
+      margin: 8px 0;
+      font-size: 1.1rem;
+    }
+
+    .point p {
+      margin: 0;
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      text-align: left;
+    }
+
+    /* ===== 対応エリア ===== */
+    .areas {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .area {
+      min-width: 200px;
+      padding: 20px 28px;
+      background: var(--bg);
+      border-left: 4px solid var(--accent);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .area small {
+      display: block;
+      color: var(--text-sub);
+      font-size: 0.85rem;
+      font-weight: 400;
+    }
+
+    /* ===== 会社概要 ===== */
+    .info-table {
+      max-width: 760px;
+      margin: 0 auto;
+      border-top: 1px solid var(--line);
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .info-row dt,
+    .info-row dd {
+      margin: 0;
+      padding: 18px 16px;
+    }
+
+    .info-row dt {
+      background: #fff;
+      font-weight: 700;
+    }
+
+    /* ===== お問い合わせ ===== */
+    .contact {
+      padding: 96px 0;
+      color: #fff;
+      text-align: center;
+    }
+
+    .contact .section-title span {
+      color: var(--gin-light);
+    }
+
+    .contact-lead {
+      margin: 0 0 40px;
+    }
+
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      padding: 32px 20px;
+      background: #fff;
+      color: var(--text);
+    }
+
+    .contact-card p {
+      margin: 0;
+      color: var(--text-sub);
+      font-size: 0.9rem;
+    }
+
+    .contact-card a {
+      display: inline-block;
+      margin-top: 4px;
+      color: var(--text);
+      font-weight: 700;
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .contact-tel {
+      font-size: clamp(1.6rem, 5vw, 2rem);
+      letter-spacing: 0.04em;
+    }
+
+    .contact-mail {
+      font-size: 1.1rem;
+    }
+
+    .contact-card a:hover {
+      color: var(--accent);
+    }
+
+    /* ===== フッター ===== */
+    .site-footer {
+      padding: 40px 0 28px;
+      background: #1c1f23;
+      color: #b7bcc2;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .site-footer p {
+      margin: 4px 0;
+    }
+
+    .footer-logo {
+      color: #fff;
+      font-family: "Shippori Mincho B1", serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+    }
+
+    .copyright {
+      margin-top: 20px !important;
+      font-size: 0.8rem;
+      color: #7d848c;
+    }
+
+    /* ===== スマートフォン ===== */
+    @media (max-width: 768px) {
+      .nav a:not(.nav-tel) {
+        display: none;
+      }
+
+      .hero {
+        padding: 80px 0;
+      }
+
+      .hero-title {
+        font-size: 1.55rem;
+        letter-spacing: 0.04em;
+      }
+
+      .section,
+      .contact {
+        padding: 72px 0;
+      }
+
+      .services,
+      .points,
+      .contact-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .area {
+        width: 100%;
+      }
+
+      .info-row {
+        grid-template-columns: 1fr;
+      }
+
+      .info-row dt {
+        padding: 12px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="logo">藤田瓦施工店</a>
+      <nav class="nav">
+        <a href="#service">事業内容</a>
+        <a href="#area">対応エリア</a>
+        <a href="#company">会社概要</a>
+        <a href="tel:08052064662" class="nav-tel">電話する</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- メインビジュアル -->
+    <section class="hero kawara">
+      <div class="container">
+        <p class="hero-badge">屋根工事 経験30年</p>
+        <p class="hero-sub">福岡県直方市の瓦屋さん</p>
+        <h1 class="hero-title">屋根瓦のことは、<br>職人にまかせてください。</h1>
+        <p class="hero-text">屋根瓦の施工・修理を承ります。</p>
+        <a href="tel:08052064662" class="btn">お電話でのご相談はこちら</a>
+      </div>
+    </section>
+
+    <!-- 事業内容 -->
+    <section id="service" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title"><span>Service</span>事業内容</h2>
+        <p class="section-lead">
+          藤田瓦施工店は、屋根瓦の施工と修理を行う個人の瓦工事店です。<br>
+          30年の経験を持つ職人が、一軒一軒ていねいに仕事をします。
+        </p>
+        <ul class="services">
+          <li class="service">
+            <span class="service-label">01</span>
+            <h3>屋根瓦の施工</h3>
+            <p>新しく瓦を葺く工事を行います。建物に合わせて、長く安心して暮らせる屋根に仕上げます。</p>
+          </li>
+          <li class="service">
+            <span class="service-label">02</span>
+            <h3>屋根瓦の修理</h3>
+            <p>瓦のずれや割れ、雨漏りが気になるときもご相談ください。屋根の状態を見て対応します。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 選ばれる理由 -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title"><span>Strength</span>藤田瓦施工店の強み</h2>
+        <ul class="points">
+          <li class="point">
+            <span class="point-big">30<small>年</small></span>
+            <h3>確かな経験</h3>
+            <p>屋根工事一筋30年。長年の経験をもとに、屋根の状態に合った施工・修理を行います。</p>
+          </li>
+          <li class="point">
+            <span class="point-big">直接</span>
+            <h3>職人に直接相談</h3>
+            <p>個人事業所なので、ご相談から工事まで職人本人が対応します。</p>
+          </li>
+          <li class="point">
+            <span class="point-big">3<small>県</small></span>
+            <h3>広い対応エリア</h3>
+            <p>福岡県全域に加え、佐賀県・大分県にも伺います。</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 対応エリア -->
+    <section id="area" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title"><span>Area</span>対応エリア</h2>
+        <ul class="areas">
+          <li class="area">福岡県<small>福岡市・福岡市以外とも対応</small></li>
+          <li class="area">佐賀県<small>県内対応</small></li>
+          <li class="area">大分県<small>県内対応</small></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 会社概要 -->
+    <section id="company" class="section">
+      <div class="container">
+        <h2 class="section-title"><span>Company</span>会社概要</h2>
+        <dl class="info-table">
+          <div class="info-row">
+            <dt>屋号</dt>
+            <dd>藤田瓦施工店</dd>
+          </div>
+          <div class="info-row">
+            <dt>代表</dt>
+            <dd>藤田 裕治</dd>
+          </div>
+          <div class="info-row">
+            <dt>所在地</dt>
+            <dd>〒822-0011<br>福岡県直方市中泉2172</dd>
+          </div>
+          <div class="info-row">
+            <dt>業種</dt>
+            <dd>屋根工事業（経験年数30年）</dd>
+          </div>
+          <div class="info-row">
+            <dt>事業内容</dt>
+            <dd>屋根瓦施工・修理</dd>
+          </div>
+          <div class="info-row">
+            <dt>対応エリア</dt>
+            <dd>福岡県（福岡市・福岡市以外）／佐賀県／大分県</dd>
+          </div>
+          <div class="info-row">
+            <dt>事業所区分</dt>
+            <dd>個人事業所</dd>
+          </div>
+          <div class="info-row">
+            <dt>電話番号</dt>
+            <dd><a href="tel:08052064662">080-5206-4662</a></dd>
+          </div>
+          <div class="info-row">
+            <dt>メール</dt>
+            <dd><a href="mailto:yuu36177123@ezweb.ne.jp">yuu36177123@ezweb.ne.jp</a></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- お問い合わせ -->
+    <section id="contact" class="contact kawara">
+      <div class="container">
+        <h2 class="section-title"><span>Contact</span>お問い合わせ</h2>
+        <p class="contact-lead">屋根瓦の施工・修理のご相談は、お電話またはメールでお気軽にどうぞ。</p>
+        <div class="contact-cards">
+          <div class="contact-card">
+            <p>お電話</p>
+            <a href="tel:08052064662" class="contact-tel">080-5206-4662</a>
+          </div>
+          <div class="contact-card">
+            <p>メール</p>
+            <a href="mailto:yuu36177123@ezweb.ne.jp" class="contact-mail">yuu36177123@ezweb.ne.jp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-logo">藤田瓦施工店</p>
+      <p>〒822-0011 福岡県直方市中泉2172</p>
+      <p>TEL <a href="tel:08052064662" style="color:#fff">080-5206-4662</a></p>
+      <p class="copyright">&copy; 藤田瓦施工店</p>
+    </div>
+  </footer>
+
+</body>
+</html>
